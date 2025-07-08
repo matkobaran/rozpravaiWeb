@@ -113,7 +113,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">{t('emailUs')}</h3>
-                    <p className="text-muted-foreground">contact@rozpravaai.com</p>
+                    <p className="text-muted-foreground">rozpravai@gmail.com</p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -130,7 +130,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground">{t('callUs')}</h3>
-                    <p className="text-muted-foreground">+421 123 456 789</p>
+                    <p className="text-muted-foreground">+421 940 723 850</p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
@@ -144,10 +144,10 @@ export const Contact = () => {
                 <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <MapPin className="text-primary" size={24} />
-                  </div>
+                  </div>  
                   <div>
                     <h3 className="font-semibold text-foreground">{t('visitUs')}</h3>
-                    <p className="text-muted-foreground">Bratislava, Slovakia</p>
+                    <p className="text-muted-foreground">Prešov, Slovensko</p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">

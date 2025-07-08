@@ -31,7 +31,7 @@ const translations = {
     bookDemo: "Rezervovať demo",
     
     // Features
-    whyChoose: "Prečo si vybrať RozpravaAI?",
+    whyChoose: "Prečo si vybrať RozpravAI?",
     featuresDescription: "Objavte výkonné funkcie, ktoré robia z nášho AI chatbota perfektné riešenie pre váš e-commerce podnik.",
     support247: "24/7 zákaznícka podpora",
     support247Desc: "Váš AI asistent nikdy nespí a poskytuje okamžité odpovede na zákaznícke otázky kedykoľvek.",
@@ -48,8 +48,8 @@ const translations = {
     
     // Live Demo
     tryAssistant: "Vyskúšajte nášho AI asistenta",
-    demoDescription: "Zažite silu RozpravaAI s naším živým demo. Pýtajte sa otázky, požiadajte o produkty alebo získajte podporu.",
-    demoTitle: "RozpravaAI Demo",
+    demoDescription: "Zažite silu RozpravAI s naším živým demo. Pýtajte sa otázky, požiadajte o produkty alebo získajte podporu.",
+    demoTitle: "RozpravAI Demo",
     alwaysReady: "Vždy pripravený pomôcť",
     resetDemo: "Resetovať demo",
     typeMessage: "Napíšte svoju správu...",
@@ -70,9 +70,9 @@ const translations = {
     contactSales: "Kontaktovať predaj",
     
     // About
-    aboutTitle: "O RozpravaAI",
+    aboutTitle: "O RozpravAI",
     aboutDesc1: "Sme tím AI špecialistov a e-commerce expertov, ktorí sa venujú revolúcii v zákazníckej podpore pre online podniky. Naším poslaním je sprístupniť pokročilé AI technológie podnikom všetkých veľkostí.",
-    aboutDesc2: "Založená v roku 2024, RozpravaAI sa rýchlo stala dôveryhodným partnerom pre e-commerce podniky, ktoré chcú zlepšiť zákaznícku skúsenosť prostredníctvom inteligentnej automatizácie.",
+    aboutDesc2: "Založená v roku 2025, RozpravAI sa rýchlo stala dôveryhodným partnerom pre e-commerce podniky, ktoré chcú zlepšiť zákaznícku skúsenosť prostredníctvom inteligentnej automatizácie.",
     happyClients: "Spokojní klienti",
     uptime: "Dostupnosť",
     support: "Podpora",
@@ -119,7 +119,7 @@ const translations = {
     apiDocs: "API dokumentácia",
     statusPage: "Stránka stavu",
     readyToStart: "Pripravení začať?",
-    joinBusinesses: "Pripojte sa k stovkám podnikov, ktoré už používajú RozpravaAI na zlepšenie zákazníckej skúsenosti.",
+    joinBusinesses: "Pripojte sa k stovkám podnikov, ktoré už používajú RozpravAI na zlepšenie zákazníckej skúsenosti.",
     rights: "Všetky práva vyhradené.",
     
     // Demo responses
@@ -148,7 +148,7 @@ const translations = {
     bookDemo: "Book a Demo",
     
     // Features
-    whyChoose: "Why Choose RozpravaAI?",
+    whyChoose: "Why Choose RozpravAI?",
     featuresDescription: "Discover the powerful features that make our AI chatbot the perfect solution for your e-commerce business.",
     support247: "24/7 Customer Support",
     support247Desc: "Your AI assistant never sleeps, providing instant responses to customer inquiries at any time.",
@@ -165,8 +165,8 @@ const translations = {
     
     // Live Demo
     tryAssistant: "Try Our AI Assistant",
-    demoDescription: "Experience the power of RozpravaAI with our live demo. Ask questions, request products, or get support.",
-    demoTitle: "RozpravaAI Demo",
+    demoDescription: "Experience the power of RozpravAI with our live demo. Ask questions, request products, or get support.",
+    demoTitle: "RozpravAI Demo",
     alwaysReady: "Always ready to help",
     resetDemo: "Reset Demo",
     typeMessage: "Type your message...",
@@ -187,9 +187,9 @@ const translations = {
     contactSales: "Contact Sales",
     
     // About
-    aboutTitle: "About RozpravaAI",
+    aboutTitle: "About RozpravAI",
     aboutDesc1: "We're a team of AI specialists and e-commerce experts dedicated to revolutionizing customer service for online businesses. Our mission is to make advanced AI technology accessible to businesses of all sizes.",
-    aboutDesc2: "Founded in 2024, RozpravaAI has quickly become a trusted partner for e-commerce businesses looking to enhance their customer experience through intelligent automation.",
+    aboutDesc2: "Founded in 2025, RozpravAI has quickly become a trusted partner for e-commerce businesses looking to enhance their customer experience through intelligent automation.",
     happyClients: "Happy Clients",
     uptime: "Uptime",
     support: "Support",
@@ -236,7 +236,7 @@ const translations = {
     apiDocs: "API Documentation",
     statusPage: "Status Page",
     readyToStart: "Ready to Get Started?",
-    joinBusinesses: "Join hundreds of businesses already using RozpravaAI to enhance their customer experience.",
+    joinBusinesses: "Join hundreds of businesses already using RozpravAI to enhance their customer experience.",
     rights: "All rights reserved.",
     
     // Demo responses

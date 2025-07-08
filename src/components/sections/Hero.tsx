@@ -48,7 +48,7 @@ export const Hero = () => {
                 <Bot className="text-primary-foreground" size={20} />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">RozpravaAI Assistant</h3>
+                <h3 className="font-semibold text-foreground">RozpravAI Assistant</h3>
                 <p className="text-sm text-muted-foreground">{t('alwaysReady')}</p>
               </div>
             </div>

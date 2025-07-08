@@ -23,7 +23,7 @@ export const Footer = () => {
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-sm">RA</span>
               </div>
-              <span className="text-xl font-bold">RozpravaAI</span>
+              <span className="text-xl font-bold">RozpravAI</span>
             </div>
             <p className="text-gray-400 mb-4">
               {t('footerDesc')}
@@ -161,7 +161,7 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 RozpravaAI. {t('rights')}</p>
+          <p>&copy; 2025 RozpravAI. {t('rights')}</p>
         </div>
       </div>
     </footer>
