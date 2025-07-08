@@ -13,6 +13,9 @@ export const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    company: "",
+    companySize: "",
+    serviceType: "",
     message: ""
   });
   const { toast } = useToast();
@@ -26,10 +29,10 @@ export const Contact = () => {
       description: t('thankYou'),
     });
     
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", company: "", companySize: "", serviceType: "", message: "" });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -79,6 +82,53 @@ export const Contact = () => {
                     required
                     placeholder={t('yourEmail')}
                   />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="company">{t('company')}</Label>
+                  <Input
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    required
+                    placeholder={t('companyName')}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="companySize">{t('companySize')}</Label>
+                  <select
+                    id="companySize"
+                    name="companySize"
+                    value={formData.companySize}
+                    onChange={handleChange}
+                    required
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <option value="">{t('selectCompanySize')}</option>
+                    <option value="1-10">{t('size1to10')}</option>
+                    <option value="11-50">{t('size11to50')}</option>
+                    <option value="51-200">{t('size51to200')}</option>
+                    <option value="200+">{t('size200plus')}</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="serviceType">{t('interestedService')}</Label>
+                  <select
+                    id="serviceType"
+                    name="serviceType"
+                    value={formData.serviceType}
+                    onChange={handleChange}
+                    required
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    <option value="">{t('selectService')}</option>
+                    <option value="starter">{t('starterPlan')}</option>
+                    <option value="pro">{t('proPlan')}</option>
+                    <option value="enterprise">{t('enterprisePlan')}</option>
+                  </select>
                 </div>
                 
                 <div className="space-y-2">

@@ -64,25 +64,27 @@ export const LiveDemo = () => {
         </div>
 
         <div className="max-w-2xl mx-auto">
-          <Card className="h-96 flex flex-col">
-            <CardHeader className="pb-3">
-              <CardTitle className="flex items-center gap-2">
-                <Bot className="text-primary" size={20} />
-                {t('demoTitle')}
-              </CardTitle>
-              <Button variant="outline" size="sm" onClick={resetDemo} className="self-end">
-                {t('resetDemo')}
-              </Button>
+          <Card className="flex flex-col h-[500px]">
+            <CardHeader className="pb-3 flex-shrink-0">
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <Bot className="text-primary" size={20} />
+                  {t('demoTitle')}
+                </CardTitle>
+                <Button variant="outline" size="sm" onClick={resetDemo}>
+                  {t('resetDemo')}
+                </Button>
+              </div>
             </CardHeader>
-            <CardContent className="flex-1 flex flex-col">
-              <div className="flex-1 overflow-y-auto space-y-4 mb-4">
+            <CardContent className="flex-1 flex flex-col min-h-0">
+              <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
                 {messages.map((message, index) => (
                   <div
                     key={index}
                     className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div className={`flex gap-2 max-w-[80%] ${message.role === "user" ? "flex-row-reverse" : ""}`}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                         message.role === "user" ? "bg-primary" : "bg-gray-200"
                       }`}>
                         {message.role === "user" ? (
@@ -96,14 +98,14 @@ export const LiveDemo = () => {
                           ? "bg-primary text-primary-foreground" 
                           : "bg-gray-100 text-gray-900"
                       }`}>
-                        <p className="text-sm">{message.content}</p>
+                        <p className="text-sm break-words">{message.content}</p>
                       </div>
                     </div>
                   </div>
                 ))}
                 {isTyping && (
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
                       <Bot size={16} className="text-gray-600" />
                     </div>
                     <div className="bg-gray-100 rounded-lg p-3">
@@ -117,7 +119,7 @@ export const LiveDemo = () => {
                 )}
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-shrink-0">
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}

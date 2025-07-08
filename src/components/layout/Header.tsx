@@ -31,31 +31,31 @@ export const Header = () => {
         <nav className="hidden md:flex items-center space-x-6">
           <button 
             onClick={() => scrollToSection("features")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors min-w-[80px] text-center"
           >
             {t('features')}
           </button>
           <button 
             onClick={() => scrollToSection("demo")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors min-w-[80px] text-center"
           >
             {t('demo')}
           </button>
           <button 
             onClick={() => scrollToSection("pricing")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors min-w-[80px] text-center"
           >
             {t('pricing')}
           </button>
           <button 
             onClick={() => scrollToSection("about")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors min-w-[80px] text-center"
           >
             {t('about')}
           </button>
           <button 
             onClick={() => scrollToSection("contact")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors min-w-[80px] text-center"
           >
             {t('contact')}
           </button>
@@ -63,8 +63,8 @@ export const Header = () => {
 
         <div className="hidden md:flex items-center space-x-3">
           <LanguageSwitcher />
-          <Button variant="outline">{t('clientPortal')}</Button>
-          <Button>{t('tryItFree')}</Button>
+          <Button variant="outline" className="min-w-[120px]">{t('clientPortal')}</Button>
+          <Button onClick={() => scrollToSection("contact")} className="min-w-[120px]">{t('tryItFree')}</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -113,7 +113,7 @@ export const Header = () => {
             <div className="flex flex-col space-y-2 pt-4">
               <LanguageSwitcher />
               <Button variant="outline">{t('clientPortal')}</Button>
-              <Button>{t('tryItFree')}</Button>
+              <Button onClick={() => scrollToSection("contact")}>{t('tryItFree')}</Button>
             </div>
           </nav>
         </div>

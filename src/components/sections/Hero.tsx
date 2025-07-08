@@ -6,8 +6,8 @@ import { ArrowRight, Bot, Sparkles } from "lucide-react";
 export const Hero = () => {
   const { t } = useLanguage();
 
-  const scrollToDemo = () => {
-    const element = document.getElementById("demo");
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -31,11 +31,11 @@ export const Hero = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
-          <Button size="lg" onClick={scrollToDemo} className="group">
+          <Button size="lg" onClick={() => scrollToSection("demo")} className="group">
             {t('tryLiveDemo')}
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button size="lg" variant="outline">
+          <Button size="lg" variant="outline" onClick={() => scrollToSection("contact")}>
             {t('bookDemo')}
           </Button>
         </div>

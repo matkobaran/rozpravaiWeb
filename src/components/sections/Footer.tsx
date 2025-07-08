@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Facebook, Twitter, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const { t } = useLanguage();
@@ -96,9 +97,9 @@ export const Footer = () => {
                 </button>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <Link to="/help-center" className="hover:text-white transition-colors">
                   {t('helpCenter')}
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
@@ -118,14 +119,14 @@ export const Footer = () => {
             <h3 className="font-semibold mb-4">{t('legal')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <Link to="/privacy-policy" className="hover:text-white transition-colors">
                   {t('privacyPolicy')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <Link to="/terms-of-service" className="hover:text-white transition-colors">
                   {t('termsOfService')}
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
@@ -149,10 +150,10 @@ export const Footer = () => {
               {t('joinBusinesses')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => scrollToSection("contact")}>
                 {t('tryItFree')}
               </Button>
-              <Button size="lg" variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800">
+              <Button size="lg" variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800" onClick={() => scrollToSection("contact")}>
                 {t('bookDemo')}
               </Button>
             </div>
