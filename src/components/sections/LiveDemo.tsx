@@ -18,7 +18,7 @@ export const LiveDemo = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const demoResponses = [
     t('demoResponse1'),
@@ -27,9 +27,11 @@ export const LiveDemo = () => {
     t('demoResponse4')
   ];
 
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom of messages container when messages change
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   const sendMessage = () => {
@@ -83,7 +85,10 @@ export const LiveDemo = () => {
               </div>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col min-h-0">
-              <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
+              <div 
+                ref={messagesContainerRef}
+                className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 scroll-smooth"
+              >
                 {messages.map((message, index) => (
                   <div
                     key={index}
@@ -123,7 +128,6 @@ export const LiveDemo = () => {
                     </div>
                   </div>
                 )}
-                <div ref={messagesEndRef} />
               </div>
 
               <div className="flex gap-2 flex-shrink-0">
