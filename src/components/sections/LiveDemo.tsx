@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,6 +18,7 @@ export const LiveDemo = () => {
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const demoResponses = [
     t('demoResponse1'),
@@ -25,6 +26,11 @@ export const LiveDemo = () => {
     t('demoResponse3'),
     t('demoResponse4')
   ];
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
 
   const sendMessage = () => {
     if (!inputValue.trim()) return;
@@ -117,6 +123,7 @@ export const LiveDemo = () => {
                     </div>
                   </div>
                 )}
+                <div ref={messagesEndRef} />
               </div>
 
               <div className="flex gap-2 flex-shrink-0">
