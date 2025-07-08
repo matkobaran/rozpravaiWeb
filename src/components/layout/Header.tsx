@@ -1,10 +1,13 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -30,37 +33,38 @@ export const Header = () => {
             onClick={() => scrollToSection("features")}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Features
+            {t('features')}
           </button>
           <button 
             onClick={() => scrollToSection("demo")}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Demo
+            {t('demo')}
           </button>
           <button 
             onClick={() => scrollToSection("pricing")}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Pricing
+            {t('pricing')}
           </button>
           <button 
             onClick={() => scrollToSection("about")}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            About
+            {t('about')}
           </button>
           <button 
             onClick={() => scrollToSection("contact")}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Contact
+            {t('contact')}
           </button>
         </nav>
 
         <div className="hidden md:flex items-center space-x-3">
-          <Button variant="outline">Client Portal</Button>
-          <Button>Try It Free</Button>
+          <LanguageSwitcher />
+          <Button variant="outline">{t('clientPortal')}</Button>
+          <Button>{t('tryItFree')}</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -80,35 +84,36 @@ export const Header = () => {
               onClick={() => scrollToSection("features")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
-              Features
+              {t('features')}
             </button>
             <button 
               onClick={() => scrollToSection("demo")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
-              Demo
+              {t('demo')}
             </button>
             <button 
               onClick={() => scrollToSection("pricing")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
-              Pricing
+              {t('pricing')}
             </button>
             <button 
               onClick={() => scrollToSection("about")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
-              About
+              {t('about')}
             </button>
             <button 
               onClick={() => scrollToSection("contact")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
-              Contact
+              {t('contact')}
             </button>
             <div className="flex flex-col space-y-2 pt-4">
-              <Button variant="outline">Client Portal</Button>
-              <Button>Try It Free</Button>
+              <LanguageSwitcher />
+              <Button variant="outline">{t('clientPortal')}</Button>
+              <Button>{t('tryItFree')}</Button>
             </div>
           </nav>
         </div>

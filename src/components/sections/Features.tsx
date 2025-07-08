@@ -1,50 +1,53 @@
 
 import { Clock, MessageCircle, Globe, Zap, ShoppingCart, BarChart } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-
-const features = [
-  {
-    icon: Clock,
-    title: "24/7 Customer Support",
-    description: "Your AI assistant never sleeps, providing instant responses to customer inquiries at any time."
-  },
-  {
-    icon: MessageCircle,
-    title: "Smart FAQ Answering",
-    description: "Automatically answers common questions using your knowledge base and learns from interactions."
-  },
-  {
-    icon: ShoppingCart,
-    title: "Product Recommendations",
-    description: "Suggests relevant products based on customer preferences and browsing history."
-  },
-  {
-    icon: Globe,
-    title: "Slovak & English Support",
-    description: "Communicate with customers in their preferred language with natural conversation flow."
-  },
-  {
-    icon: Zap,
-    title: "Easy API Integration",
-    description: "Simple integration with your existing e-commerce platform through our robust API."
-  },
-  {
-    icon: BarChart,
-    title: "Analytics & Insights",
-    description: "Track performance metrics and gain insights into customer behavior and preferences."
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Features = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: Clock,
+      title: t('support247'),
+      description: t('support247Desc')
+    },
+    {
+      icon: MessageCircle,
+      title: t('smartFaq'),
+      description: t('smartFaqDesc')
+    },
+    {
+      icon: ShoppingCart,
+      title: t('productRecs'),
+      description: t('productRecsDesc')
+    },
+    {
+      icon: Globe,
+      title: t('languageSupport'),
+      description: t('languageSupportDesc')
+    },
+    {
+      icon: Zap,
+      title: t('easyIntegration'),
+      description: t('easyIntegrationDesc')
+    },
+    {
+      icon: BarChart,
+      title: t('analytics'),
+      description: t('analyticsDesc')
+    }
+  ];
+
   return (
     <section id="features" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Choose RozpravaAI?
+            {t('whyChoose')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover the powerful features that make our AI chatbot the perfect solution for your e-commerce business.
+            {t('featuresDescription')}
           </p>
         </div>
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Bot, User, Send } from "lucide-react";
 
 interface ChatMessage {
@@ -10,20 +11,20 @@ interface ChatMessage {
   content: string;
 }
 
-const demoResponses = [
-  "Hello! I'm your AI shopping assistant. How can I help you today?",
-  "I'd be happy to help you find that! Let me search our product catalog for you.",
-  "Based on your preferences, I found several great options. Would you like to see the top 3 recommendations?",
-  "Great choice! This product has excellent reviews. Would you like to know about shipping options or add it to your cart?",
-  "Perfect! I've added that to your cart. Is there anything else I can help you with today?"
-];
-
 export const LiveDemo = () => {
+  const { t } = useLanguage();
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: "assistant", content: "Hello! I'm your AI shopping assistant. How can I help you today?" }
+    { role: "assistant", content: t('demoGreeting') }
   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+
+  const demoResponses = [
+    t('demoResponse1'),
+    t('demoResponse2'),
+    t('demoResponse3'),
+    t('demoResponse4')
+  ];
 
   const sendMessage = () => {
     if (!inputValue.trim()) return;
@@ -44,7 +45,7 @@ export const LiveDemo = () => {
 
   const resetDemo = () => {
     setMessages([
-      { role: "assistant", content: "Hello! I'm your AI shopping assistant. How can I help you today?" }
+      { role: "assistant", content: t('demoGreeting') }
     ]);
     setInputValue("");
     setIsTyping(false);
@@ -55,10 +56,10 @@ export const LiveDemo = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Try Our AI Assistant
+            {t('tryAssistant')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Experience the power of RozpravaAI with our live demo. Ask questions, request products, or get support.
+            {t('demoDescription')}
           </p>
         </div>
 
@@ -67,10 +68,10 @@ export const LiveDemo = () => {
             <CardHeader className="pb-3">
               <CardTitle className="flex items-center gap-2">
                 <Bot className="text-primary" size={20} />
-                RozpravaAI Demo
+                {t('demoTitle')}
               </CardTitle>
               <Button variant="outline" size="sm" onClick={resetDemo} className="self-end">
-                Reset Demo
+                {t('resetDemo')}
               </Button>
             </CardHeader>
             <CardContent className="flex-1 flex flex-col">
@@ -120,7 +121,7 @@ export const LiveDemo = () => {
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="Type your message..."
+                  placeholder={t('typeMessage')}
                   onKeyPress={(e) => e.key === "Enter" && sendMessage()}
                   disabled={isTyping}
                 />

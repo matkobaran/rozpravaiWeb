@@ -1,66 +1,69 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Check, Star } from "lucide-react";
 
-const plans = [
-  {
-    name: "Starter",
-    price: "29",
-    period: "month",
-    description: "Perfect for small e-shops getting started with AI support",
-    features: [
-      "Up to 1,000 conversations/month",
-      "Basic FAQ answering",
-      "Email support",
-      "Slovak & English support",
-      "API integration",
-    ],
-    popular: false
-  },
-  {
-    name: "Pro",
-    price: "79",
-    period: "month",
-    description: "Ideal for growing businesses with higher customer volume",
-    features: [
-      "Up to 10,000 conversations/month",
-      "Advanced product recommendations",
-      "Priority support",
-      "Custom knowledge base",
-      "Analytics dashboard",
-      "Webhook integrations",
-    ],
-    popular: true
-  },
-  {
-    name: "Enterprise",
-    price: "199",
-    period: "month",
-    description: "For large businesses requiring custom solutions",
-    features: [
-      "Unlimited conversations",
-      "Custom AI training",
-      "Dedicated account manager",
-      "24/7 phone support",
-      "Custom integrations",
-      "White-label solution",
-      "SLA guarantee",
-    ],
-    popular: false
-  }
-];
-
 export const Pricing = () => {
+  const { t } = useLanguage();
+
+  const plans = [
+    {
+      name: t('starter'),
+      price: "29",
+      period: t('month'),
+      description: t('starterDesc'),
+      features: [
+        "Do 1 000 konverzácií/mesiac",
+        "Základné odpovedanie na FAQ",
+        "Email podpora",
+        "Podpora slovenčiny a angličtiny",
+        "API integrácia",
+      ],
+      popular: false
+    },
+    {
+      name: t('pro'),
+      price: "79",
+      period: t('month'),
+      description: t('proDesc'),
+      features: [
+        "Do 10 000 konverzácií/mesiac",
+        "Pokročilé odporúčania produktov",
+        "Prioritná podpora",
+        "Vlastná databáza znalostí",
+        "Analytický dashboard",
+        "Webhook integrácie",
+      ],
+      popular: true
+    },
+    {
+      name: t('enterprise'),
+      price: "199",
+      period: t('month'),
+      description: t('enterpriseDesc'),
+      features: [
+        "Neobmedzené konverzácie",
+        "Vlastné AI trénovanie",
+        "Dedikovaný account manager",
+        "24/7 telefonická podpora",
+        "Vlastné integrácie",
+        "White-label riešenie",
+        "SLA záruka",
+      ],
+      popular: false
+    }
+  ];
+
   return (
     <section id="pricing" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Simple, Transparent Pricing
+            {t('simplePricing')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Choose the perfect plan for your business. All plans include our core AI features with no hidden fees.
+            {t('pricingDescription')}
           </p>
         </div>
 
@@ -73,7 +76,7 @@ export const Pricing = () => {
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
                   <div className="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium flex items-center gap-1">
                     <Star size={14} />
-                    Most Popular
+                    {t('mostPopular')}
                   </div>
                 </div>
               )}
@@ -101,7 +104,7 @@ export const Pricing = () => {
                   className="w-full" 
                   variant={plan.popular ? "default" : "outline"}
                 >
-                  Get Started
+                  {t('getStarted')}
                 </Button>
               </CardContent>
             </Card>
@@ -110,9 +113,9 @@ export const Pricing = () => {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-4">
-            Need a custom solution? We're here to help.
+            {t('needCustom')}
           </p>
-          <Button variant="outline">Contact Sales</Button>
+          <Button variant="outline">{t('contactSales')}</Button>
         </div>
       </div>
     </section>

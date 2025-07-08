@@ -1,8 +1,11 @@
 
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Facebook, Twitter, Linkedin, Mail } from "lucide-react";
 
 export const Footer = () => {
+  const { t } = useLanguage();
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -23,8 +26,7 @@ export const Footer = () => {
               <span className="text-xl font-bold">RozpravaAI</span>
             </div>
             <p className="text-gray-400 mb-4">
-              Empowering e-commerce with intelligent AI conversations. 
-              Transform your customer service today.
+              {t('footerDesc')}
             </p>
             <div className="flex space-x-4">
               <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
@@ -44,14 +46,14 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <button 
                   onClick={() => scrollToSection("features")}
                   className="hover:text-white transition-colors"
                 >
-                  Features
+                  {t('features')}
                 </button>
               </li>
               <li>
@@ -59,7 +61,7 @@ export const Footer = () => {
                   onClick={() => scrollToSection("pricing")}
                   className="hover:text-white transition-colors"
                 >
-                  Pricing
+                  {t('pricing')}
                 </button>
               </li>
               <li>
@@ -67,7 +69,7 @@ export const Footer = () => {
                   onClick={() => scrollToSection("demo")}
                   className="hover:text-white transition-colors"
                 >
-                  Live Demo
+                  {t('demo')}
                 </button>
               </li>
               <li>
@@ -75,7 +77,7 @@ export const Footer = () => {
                   onClick={() => scrollToSection("about")}
                   className="hover:text-white transition-colors"
                 >
-                  About Us
+                  {t('about')}
                 </button>
               </li>
             </ul>
@@ -83,29 +85,29 @@ export const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
+            <h3 className="font-semibold mb-4">{t('support')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <button 
                   onClick={() => scrollToSection("contact")}
                   className="hover:text-white transition-colors"
                 >
-                  Contact Us
+                  {t('contact')}
                 </button>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Help Center
+                  {t('helpCenter')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  API Documentation
+                  {t('apiDocs')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Status Page
+                  {t('statusPage')}
                 </a>
               </li>
             </ul>
@@ -113,26 +115,26 @@ export const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="font-semibold mb-4">Legal</h3>
+            <h3 className="font-semibold mb-4">{t('legal')}</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Privacy Policy
+                  {t('privacyPolicy')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Terms of Service
+                  {t('termsOfService')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  Cookie Policy
+                  {t('cookiePolicy')}
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-white transition-colors">
-                  GDPR Compliance
+                  {t('gdprCompliance')}
                 </a>
               </li>
             </ul>
@@ -142,16 +144,16 @@ export const Footer = () => {
         {/* Call to Action */}
         <div className="border-t border-gray-800 pt-8 mb-8">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('readyToStart')}</h3>
             <p className="text-gray-400 mb-6">
-              Join hundreds of businesses already using RozpravaAI to enhance their customer experience.
+              {t('joinBusinesses')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-primary hover:bg-primary/90">
-                Try It Free
+                {t('tryItFree')}
               </Button>
               <Button size="lg" variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800">
-                Book a Demo
+                {t('bookDemo')}
               </Button>
             </div>
           </div>
@@ -159,7 +161,7 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 RozpravaAI. All rights reserved.</p>
+          <p>&copy; 2024 RozpravaAI. {t('rights')}</p>
         </div>
       </div>
     </footer>

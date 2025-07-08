@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,8 +22,8 @@ export const Contact = () => {
     
     // Simulate form submission
     toast({
-      title: "Message sent!",
-      description: "Thank you for contacting us. We'll get back to you soon.",
+      title: t('messageSent'),
+      description: t('thankYou'),
     });
     
     setFormData({ name: "", email: "", message: "" });
@@ -39,11 +41,10 @@ export const Contact = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Get In Touch
+            {t('getInTouch')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to transform your customer service? Contact us today for a personalized demo 
-            or to discuss your specific needs.
+            {t('contactDescription')}
           </p>
         </div>
 
@@ -51,24 +52,24 @@ export const Contact = () => {
           {/* Contact Form */}
           <Card>
             <CardHeader>
-              <CardTitle>Send us a message</CardTitle>
+              <CardTitle>{t('sendMessage')}</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">{t('name')}</Label>
                   <Input
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    placeholder="Your full name"
+                    placeholder={t('yourName')}
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t('email')}</Label>
                   <Input
                     id="email"
                     name="email"
@@ -76,12 +77,12 @@ export const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="your.email@example.com"
+                    placeholder={t('yourEmail')}
                   />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message">{t('message')}</Label>
                   <textarea
                     id="message"
                     name="message"
@@ -90,13 +91,13 @@ export const Contact = () => {
                     required
                     rows={4}
                     className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Tell us about your project or ask any questions..."
+                    placeholder={t('messagePlaceholder')}
                   />
                 </div>
                 
                 <Button type="submit" className="w-full">
                   <Send className="mr-2 h-4 w-4" />
-                  Send Message
+                  {t('sendMessage')}
                 </Button>
               </form>
             </CardContent>
@@ -111,12 +112,12 @@ export const Contact = () => {
                     <Mail className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">Email Us</h3>
+                    <h3 className="font-semibold text-foreground">{t('emailUs')}</h3>
                     <p className="text-muted-foreground">contact@rozpravaai.com</p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Send us an email and we'll respond within 24 hours.
+                  {t('emailDesc')}
                 </p>
               </CardContent>
             </Card>
@@ -128,12 +129,12 @@ export const Contact = () => {
                     <Phone className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">Call Us</h3>
+                    <h3 className="font-semibold text-foreground">{t('callUs')}</h3>
                     <p className="text-muted-foreground">+421 123 456 789</p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Available Monday to Friday, 9 AM to 6 PM CET.
+                  {t('callDesc')}
                 </p>
               </CardContent>
             </Card>
@@ -145,21 +146,20 @@ export const Contact = () => {
                     <MapPin className="text-primary" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground">Visit Us</h3>
+                    <h3 className="font-semibold text-foreground">{t('visitUs')}</h3>
                     <p className="text-muted-foreground">Bratislava, Slovakia</p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Schedule a meeting at our office for in-person consultation.
+                  {t('visitDesc')}
                 </p>
               </CardContent>
             </Card>
 
             <div className="bg-primary/5 rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-2">Quick Response Guarantee</h3>
+              <h3 className="font-semibold text-foreground mb-2">{t('quickResponse')}</h3>
               <p className="text-sm text-muted-foreground">
-                We understand that timing is crucial for your business. That's why we guarantee 
-                a response to all inquiries within 24 hours on business days.
+                {t('quickResponseDesc')}
               </p>
             </div>
           </div>
