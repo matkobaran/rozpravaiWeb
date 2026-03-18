@@ -1,42 +1,21 @@
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Mail, Phone, Send } from "lucide-react";
 
 export const Contact = () => {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    companySize: "",
-    serviceType: "",
-    message: ""
-  });
-  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Simulate form submission
-    toast({
-      title: t('messageSent'),
-      description: t('thankYou'),
-    });
-    
-    setFormData({ name: "", email: "", company: "", companySize: "", serviceType: "", message: "" });
-  };
+  const openChat = () => {
+    const maybeOpen = (window as unknown as { rozpravaiOpenDemoWidget?: () => void }).rozpravaiOpenDemoWidget;
+    if (maybeOpen) {
+      maybeOpen();
+      return;
+    }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    (window as unknown as { rozpravaiOpenDemoRequested?: boolean }).rozpravaiOpenDemoRequested = true;
+    window.dispatchEvent(new Event("rozpravai-open-demo-widget"));
   };
 
   return (
@@ -49,172 +28,63 @@ export const Contact = () => {
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             {t('contactDescription')}
           </p>
+
+          <div className="mt-8">
+            <Button onClick={openChat} className="inline-flex items-center gap-2">
+              <Send className="h-4 w-4" />
+              Kontaktovať cez chatbot
+            </Button>
+          </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('sendMessage')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">{t('name')}</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder={t('yourName')}
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">{t('email')}</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder={t('yourEmail')}
-                  />
-                </div>
+        <div className="grid md:grid-cols-2 gap-4 max-w-6xl mx-auto items-stretch">
+          <ContactCard
+            icon={<Mail className="text-primary" size={24} />}
+            title={t("emailUs")}
+            value="rozpravai@gmail.com"
+            desc={t("emailDesc")}
+          />
 
-                <div className="space-y-2">
-                  <Label htmlFor="company">{t('company')}</Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    required
-                    placeholder={t('companyName')}
-                  />
-                </div>
+          <ContactCard
+            icon={<Phone className="text-primary" size={24} />}
+            title={t("callUs")}
+            value="+421 940 723 850"
+            desc={t("callDesc")}
+          />
 
-                <div className="space-y-2">
-                  <Label htmlFor="companySize">{t('companySize')}</Label>
-                  <select
-                    id="companySize"
-                    name="companySize"
-                    value={formData.companySize}
-                    onChange={handleChange}
-                    required
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <option value="">{t('selectCompanySize')}</option>
-                    <option value="1-10">{t('size1to10')}</option>
-                    <option value="11-50">{t('size11to50')}</option>
-                    <option value="51-200">{t('size51to200')}</option>
-                    <option value="200+">{t('size200plus')}</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="serviceType">{t('interestedService')}</Label>
-                  <select
-                    id="serviceType"
-                    name="serviceType"
-                    value={formData.serviceType}
-                    onChange={handleChange}
-                    required
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <option value="">{t('selectService')}</option>
-                    <option value="starter">{t('starterPlan')}</option>
-                    <option value="pro">{t('proPlan')}</option>
-                    <option value="enterprise">{t('enterprisePlan')}</option>
-                  </select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">{t('message')}</Label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder={t('messagePlaceholder')}
-                  />
-                </div>
-                
-                <Button type="submit" className="w-full">
-                  <Send className="mr-2 h-4 w-4" />
-                  {t('sendMessage')}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Mail className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">{t('emailUs')}</h3>
-                    <p className="text-muted-foreground">rozpravai@gmail.com</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {t('emailDesc')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <Phone className="text-primary" size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">{t('callUs')}</h3>
-                    <p className="text-muted-foreground">+421 940 723 850</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {t('callDesc')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <MapPin className="text-primary" size={24} />
-                  </div>  
-                  <div>
-                    <h3 className="font-semibold text-foreground">{t('visitUs')}</h3>
-                    <p className="text-muted-foreground">Prešov, Slovensko</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {t('visitDesc')}
-                </p>
-              </CardContent>
-            </Card>
-
-            <div className="bg-primary/5 rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-2">{t('quickResponse')}</h3>
-              <p className="text-sm text-muted-foreground">
-                {t('quickResponseDesc')}
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
+  );
+};
+
+const ContactCard = ({
+  icon,
+  title,
+  value,
+  desc,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  desc: string;
+}) => {
+  return (
+    <Card className="h-full">
+      <CardContent className="p-5 h-full">
+        <div className="flex h-full flex-col items-center justify-center text-center gap-3">
+          <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+            {icon}
+          </div>
+
+          <div className="space-y-1">
+            <h3 className="font-semibold text-foreground">{title}</h3>
+            <p className="text-muted-foreground font-medium">{value}</p>
+          </div>
+
+          <p className="text-sm text-muted-foreground max-w-[18rem]">{desc}</p>
+        </div>
+      </CardContent>
+    </Card>
   );
 };

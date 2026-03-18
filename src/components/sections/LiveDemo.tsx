@@ -1,151 +1,114 @@
 
-import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Bot, User, Send } from "lucide-react";
-
-interface ChatMessage {
-  role: "user" | "assistant";
-  content: string;
-}
+import { useEffect, useMemo, useRef } from "react";
 
 export const LiveDemo = () => {
-  const { t } = useLanguage();
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: "assistant", content: t('demoGreeting') }
-  ]);
-  const [inputValue, setInputValue] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? "";
+  const demoTenantId = (import.meta.env.VITE_DEMO_TENANT_ID as string | undefined) ?? "";
 
-  const demoResponses = [
-    t('demoResponse1'),
-    t('demoResponse2'),
-    t('demoResponse3'),
-    t('demoResponse4')
-  ];
+  const apiBaseUrlNoSlash = useMemo(() => apiBaseUrl.replace(/\/$/, ""), [apiBaseUrl]);
+  const scriptTagId = "rozpravai-demo-embed-script";
+  const embedRootRef = useRef<HTMLDivElement | null>(null);
 
-  // Auto-scroll to bottom of messages container when messages change
   useEffect(() => {
-    if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    if (!apiBaseUrlNoSlash || !demoTenantId) {
+      return;
     }
-  }, [messages, isTyping]);
 
-  const sendMessage = () => {
-    if (!inputValue.trim()) return;
+    // Some versions of embed.js assume Node's `process` global.
+    // The widget runs in the browser, so we polyfill it to avoid: "process is not defined".
+    if (typeof window !== "undefined") {
+      const w = window as unknown as { process?: { env?: Record<string, string> } };
+      if (!w.process) {
+        w.process = { env: { NODE_ENV: "production" } };
+      } else if (!w.process.env) {
+        w.process.env = { NODE_ENV: "production" };
+      }
+    }
 
-    const userMessage: ChatMessage = { role: "user", content: inputValue };
-    setMessages(prev => [...prev, userMessage]);
-    setInputValue("");
-    setIsTyping(true);
+    const expectedSrc = `${apiBaseUrlNoSlash}/static/embed.js`;
+    const existing = document.getElementById(scriptTagId) as HTMLScriptElement | null;
 
-    // Simulate AI response
-    setTimeout(() => {
-      const randomResponse = demoResponses[Math.floor(Math.random() * demoResponses.length)];
-      const assistantMessage: ChatMessage = { role: "assistant", content: randomResponse };
-      setMessages(prev => [...prev, assistantMessage]);
-      setIsTyping(false);
-    }, 1500);
-  };
+    // Only keep the existing script tag if it matches current env.
+    if (existing) {
+      const existingSrc = existing.getAttribute("src") ?? "";
+      const existingTenant = existing.getAttribute("data-tenant-id") ?? "";
+      if (existingSrc === expectedSrc && existingTenant === demoTenantId) {
+        return; // prevents duplicate injections on rerenders
+      }
+      existing.remove();
+    }
 
-  const resetDemo = () => {
-    setMessages([
-      { role: "assistant", content: t('demoGreeting') }
-    ]);
-    setInputValue("");
-    setIsTyping(false);
-  };
+    const script = document.createElement("script");
+    script.id = scriptTagId;
+    script.src = expectedSrc;
+    script.async = true;
+    script.setAttribute("data-tenant-id", demoTenantId);
+    script.setAttribute("data-title", "Demo");
+
+    // Append next to our container when possible (some embed scripts mount relative to the script's parent).
+    if (embedRootRef.current) {
+      embedRootRef.current.appendChild(script);
+    } else {
+      document.body.appendChild(script);
+    }
+  }, [apiBaseUrlNoSlash, demoTenantId]);
+
+  useEffect(() => {
+    const openWidget = () => {
+      const focusInput = () => {
+        const input =
+          (document.querySelector<HTMLInputElement>(".rozpravaj-input") ||
+            document.querySelector<HTMLInputElement>('input[placeholder], input[type="text"], textarea')) ??
+          null;
+        (input as HTMLInputElement | HTMLTextAreaElement | null)?.focus?.();
+      };
+
+      const tryOpen = (attempt: number) => {
+        // If panel already mounted, just focus input.
+        if (document.querySelector(".rozpravaj-panel")) {
+          focusInput();
+          return;
+        }
+
+        const btn = document.querySelector<HTMLButtonElement>("button.rozpravaj-btn");
+        if (btn) {
+          btn.click(); // widget toggles panel on/off
+          window.setTimeout(() => focusInput(), 50);
+          return;
+        }
+
+        if (attempt < 25) {
+          window.setTimeout(() => tryOpen(attempt + 1), 250);
+        }
+      };
+
+      tryOpen(0);
+    };
+
+    // Expose for Hero.
+    (window as unknown as { rozpravaiOpenDemoWidget?: () => void }).rozpravaiOpenDemoWidget = openWidget;
+
+    const onOpenRequest = () => {
+      openWidget();
+    };
+
+    window.addEventListener("rozpravai-open-demo-widget", onOpenRequest);
+
+    const w = window as unknown as { rozpravaiOpenDemoRequested?: boolean };
+    if (w.rozpravaiOpenDemoRequested) {
+      w.rozpravaiOpenDemoRequested = false;
+      openWidget();
+    }
+
+    return () => {
+      window.removeEventListener("rozpravai-open-demo-widget", onOpenRequest);
+    };
+  }, []);
 
   return (
-    <section id="demo" className="py-20 px-4 bg-gray-50/50">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t('tryAssistant')}
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {t('demoDescription')}
-          </p>
-        </div>
-
-        <div className="max-w-2xl mx-auto">
-          <Card className="flex flex-col h-[500px]">
-            <CardHeader className="pb-3 flex-shrink-0">
-              <div className="flex items-center justify-between">
-                <CardTitle className="flex items-center gap-2">
-                  <Bot className="text-primary" size={20} />
-                  {t('demoTitle')}
-                </CardTitle>
-                <Button variant="outline" size="sm" onClick={resetDemo}>
-                  {t('resetDemo')}
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent className="flex-1 flex flex-col min-h-0">
-              <div 
-                ref={messagesContainerRef}
-                className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 scroll-smooth"
-              >
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div className={`flex gap-2 max-w-[80%] ${message.role === "user" ? "flex-row-reverse" : ""}`}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        message.role === "user" ? "bg-primary" : "bg-gray-200"
-                      }`}>
-                        {message.role === "user" ? (
-                          <User size={16} className="text-primary-foreground" />
-                        ) : (
-                          <Bot size={16} className="text-gray-600" />
-                        )}
-                      </div>
-                      <div className={`rounded-lg p-3 ${
-                        message.role === "user" 
-                          ? "bg-primary text-primary-foreground" 
-                          : "bg-gray-100 text-gray-900"
-                      }`}>
-                        <p className="text-sm break-words">{message.content}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                {isTyping && (
-                  <div className="flex gap-3">
-                    <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Bot size={16} className="text-gray-600" />
-                    </div>
-                    <div className="bg-gray-100 rounded-lg p-3">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }}></div>
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex gap-2 flex-shrink-0">
-                <Input
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  placeholder={t('typeMessage')}
-                  onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-                  disabled={isTyping}
-                />
-                <Button onClick={sendMessage} disabled={isTyping || !inputValue.trim()}>
-                  <Send size={16} />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
+    <section id="demo" className="py-6 px-4">
+      {/* Widget script is injected into this container by the effect above. */}
+      <div ref={embedRootRef} className="min-h-[1px]" />
     </section>
   );
 };

@@ -58,6 +58,14 @@ const translations = {
     demoResponse2: 'To je skvelá otázka! Na základe našich produktov by som vám odporučil pozrieť si naše najnovšie kolekcie.',
     demoResponse3: 'Rozumiem vašej požiadavke. Presmerujeme vás na správne oddelenie, ktoré vám poskytne podrobnú pomoc.',
     demoResponse4: 'Ďakujem za záujem o naše služby! Rád vám poskytnem všetky potrebné informácie.',
+    widgetInCornerNote: 'Widget sa zobrazí vpravo dole. Skúste mu poslať otázku.',
+    widgetLoadErrorTitle: 'Widget sa nepodarilo načítať',
+    widgetLoadErrorDesc: 'Skontrolujte prosím `VITE_API_BASE_URL` a `VITE_DEMO_TENANT_ID` (a či backend sprístupňuje `static/embed.js`).',
+    widgetLoadingText: 'Načítavam widget...',
+    bookingTitle: 'Nasadenie widgetu na vašej webstránke',
+    bookingTenantText: 'Každý zákazník dostane svoj unikátny `tenant_id`. Podľa neho widget vie načítať správne FAQ/produkty pre váš e-shop.',
+    bookingEmbedText: 'Vložte jedným skriptom (zvyčajne do `</head>` alebo tesne pred `</body>`):',
+    bookingContextText: 'Kontext (FAQ/produkty) nastavíte na strane vášho tenant-a v našom backend-e. Nepotrebujete žiadne tajné kľúče – stačí `tenant_id`.',
 
     // Pricing
     choosePlan: 'Vyberte si svoj plán',
@@ -89,7 +97,7 @@ const translations = {
     aboutDescription: 'Poznajte náš tím a našu víziu pre budúcnosť AI zákazníckej podpory',
     aboutTitle: 'O RozpravaAI',
     aboutDesc1: 'Sme tím nadšencov pre umelú inteligenciu a zákaznícku podporu, ktorí rozumejú výzvam moderného e-commerce.',
-    aboutDesc2: 'Naša misia je demokratizovať prístup k pokročilým AI technológiám pre malé a stredné podniky.',
+    aboutDesc2: 'Naša misia je zjednodušiť prístup k pokročilým AI technológiám pre malé a stredné podniky.',
     happyClients: 'Spokojní klienti',
     uptime: 'Dostupnosť',
     ourMission: 'Naša misia',
@@ -142,6 +150,9 @@ const translations = {
     quickResponseDesc: 'Na všetky dôležité otázky odpovedáme do 2 hodín.',
     messageSent: 'Správa odoslaná',
     thankYou: 'Ďakujeme za vašu správu. Ozveme sa vám čoskoro!',
+    includeHistoryLabel: 'Priložiť históriu konverzácie',
+    submissionErrorTitle: 'Odoslanie zlyhalo',
+    submissionErrorDesc: 'Skúste to prosím znova za chvíľu.',
 
     // Footer
     footerDesc: 'Revolučná AI platforma pre modernú zákaznícku podporu v e-commerce.',
@@ -261,6 +272,14 @@ const translations = {
     demoResponse2: 'That\'s a great question! Based on our products, I would recommend checking out our latest collections.',
     demoResponse3: 'I understand your request. We will redirect you to the right department that will provide detailed help.',
     demoResponse4: 'Thank you for your interest in our services! I\'m happy to provide all the information you need.',
+    widgetInCornerNote: 'The widget will appear in the bottom-right corner. Try sending it a question.',
+    widgetLoadErrorTitle: 'Could not load widget',
+    widgetLoadErrorDesc: 'Please check `VITE_API_BASE_URL` and `VITE_DEMO_TENANT_ID` (and that the backend serves `static/embed.js`).',
+    widgetLoadingText: 'Loading widget...',
+    bookingTitle: 'Embed the widget on your website',
+    bookingTenantText: 'Each customer receives a unique `tenant_id`. The widget uses it to load the right FAQ/products context for your store.',
+    bookingEmbedText: 'Add it with one script tag (typically in `</head>` or just before `</body>`):',
+    bookingContextText: 'Set the FAQ/products context in your tenant in our backend. No secrets required – just your `tenant_id`.',
 
     // Pricing
     choosePlan: 'Choose Your Plan',
@@ -345,6 +364,9 @@ const translations = {
     quickResponseDesc: 'We respond to all important questions within 2 hours.',
     messageSent: 'Message Sent',
     thankYou: 'Thank you for your message. We will get back to you soon!',
+    includeHistoryLabel: 'Attach conversation history',
+    submissionErrorTitle: 'Submission failed',
+    submissionErrorDesc: 'Please try again in a moment.',
 
     // Footer
     footerDesc: 'Revolutionary AI platform for modern customer support in e-commerce.',

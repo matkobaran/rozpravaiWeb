@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Users, Target, Award } from "lucide-react";
+import { Globe, Target, Award } from "lucide-react";
 
 export const About = () => {
   const { t } = useLanguage();
@@ -24,13 +24,6 @@ export const About = () => {
             <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
-                  <Users className="text-primary" size={24} />
-                </div>
-                <div className="text-2xl font-bold text-foreground">500+</div>
-                <div className="text-sm text-muted-foreground">{t('happyClients')}</div>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                   <Target className="text-primary" size={24} />
                 </div>
                 <div className="text-2xl font-bold text-foreground">99.9%</div>
@@ -43,6 +36,13 @@ export const About = () => {
                 <div className="text-2xl font-bold text-foreground">24/7</div>
                 <div className="text-sm text-muted-foreground">{t('support')}</div>
               </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <Globe className="text-primary" size={24} />
+                </div>
+                <div className="text-2xl font-bold text-foreground">SK/EN</div>
+                <div className="text-sm text-muted-foreground">{t('languageSupport')}</div>
+              </div>
             </div>
           </div>
 
@@ -53,16 +53,6 @@ export const About = () => {
                 <p className="text-muted-foreground">
                   {t('visionDesc')}
                 </p>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">{t('ourValues')}</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>{t('innovation')}</li>
-                  <li>{t('reliability')}</li>
-                  <li>{t('accessibility')}</li>
-                  <li>{t('learning')}</li>
-                </ul>
               </div>
 
               <div>

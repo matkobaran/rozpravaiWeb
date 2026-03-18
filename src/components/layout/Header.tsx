@@ -42,12 +42,6 @@ export const Header = () => {
             {t('demo')}
           </button>
           <button 
-            onClick={() => scrollToSection("pricing")}
-            className="text-muted-foreground hover:text-foreground transition-colors min-w-[60px] text-center text-sm"
-          >
-            {t('pricing')}
-          </button>
-          <button 
             onClick={() => scrollToSection("about")}
             className="text-muted-foreground hover:text-foreground transition-colors min-w-[60px] text-center text-sm"
           >
@@ -63,8 +57,6 @@ export const Header = () => {
 
         <div className="hidden md:flex items-center space-x-2">
           <LanguageSwitcher />
-          <Button variant="outline" size="sm" className="min-w-[100px] text-sm">{t('clientPortal')}</Button>
-          <Button onClick={() => scrollToSection("contact")} size="sm" className="min-w-[100px] text-sm">{t('tryItFree')}</Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -93,12 +85,6 @@ export const Header = () => {
               {t('demo')}
             </button>
             <button 
-              onClick={() => scrollToSection("pricing")}
-              className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t('pricing')}
-            </button>
-            <button 
               onClick={() => scrollToSection("about")}
               className="block w-full text-left text-muted-foreground hover:text-foreground transition-colors"
             >
@@ -113,7 +99,6 @@ export const Header = () => {
             <div className="flex flex-col space-y-2 pt-4">
               <LanguageSwitcher />
               <Button variant="outline" size="sm">{t('clientPortal')}</Button>
-              <Button onClick={() => scrollToSection("contact")} size="sm">{t('tryItFree')}</Button>
             </div>
           </nav>
         </div>

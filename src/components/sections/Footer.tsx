@@ -59,14 +59,6 @@ export const Footer = () => {
               </li>
               <li>
                 <button 
-                  onClick={() => scrollToSection("pricing")}
-                  className="hover:text-white transition-colors"
-                >
-                  {t('pricing')}
-                </button>
-              </li>
-              <li>
-                <button 
                   onClick={() => scrollToSection("demo")}
                   className="hover:text-white transition-colors"
                 >
@@ -139,24 +131,6 @@ export const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="border-t border-gray-800 pt-8 mb-8">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">{t('readyToStart')}</h3>
-            <p className="text-gray-400 mb-6">
-              {t('joinBusinesses')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => scrollToSection("contact")}>
-                {t('tryItFree')}
-              </Button>
-              <Button size="lg" variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800" onClick={() => scrollToSection("contact")}>
-                {t('bookDemo')}
-              </Button>
-            </div>
           </div>
         </div>
 

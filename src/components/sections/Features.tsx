@@ -34,7 +34,7 @@ export const Features = () => {
     },
     {
       icon: BarChart,
-      title: t('analytics'),
+      title: t('analyticsReports'),
       description: t('analyticsDesc')
     }
   ];
