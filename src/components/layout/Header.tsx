@@ -39,12 +39,6 @@ export const Header = () => {
             onClick={() => scrollToSection("demo")}
             className="text-muted-foreground hover:text-foreground transition-colors min-w-[60px] text-center text-sm"
           >
-            {t('demo')}
-          </button>
-          <button 
-            onClick={() => scrollToSection("about")}
-            className="text-muted-foreground hover:text-foreground transition-colors min-w-[60px] text-center text-sm"
-          >
             {t('about')}
           </button>
           <button 
