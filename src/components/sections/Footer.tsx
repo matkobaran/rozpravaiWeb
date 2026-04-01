@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Facebook, Twitter, Linkedin, Mail } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Mail, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
@@ -20,27 +21,50 @@ export const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">RA</span>
-              </div>
-              <span className="text-xl font-bold">RozpravAI</span>
-            </div>
+            <Link to="/" className="inline-flex mb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-md">
+              <BrandLogo className="h-10 sm:h-11" />
+            </Link>
             <p className="text-gray-400 mb-4">
               {t('footerDesc')}
             </p>
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white" aria-label="Facebook">
                 <Facebook size={20} />
               </Button>
-              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                <Twitter size={20} />
+              <Button asChild variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                <a
+                  href="https://x.com/RozpravAI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
+                >
+                  <Twitter size={20} />
+                </a>
               </Button>
-              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                <Linkedin size={20} />
+              <Button asChild variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                <a
+                  href="https://www.linkedin.com/in/rozpravai-479b953bb/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={20} />
+                </a>
               </Button>
-              <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
-                <Mail size={20} />
+              <Button asChild variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                <a href="mailto:rozpravai@gmail.com" aria-label="Email">
+                  <Mail size={20} />
+                </a>
+              </Button>
+              <Button asChild variant="ghost" size="icon" className="text-gray-400 hover:text-white">
+                <a
+                  href="https://www.instagram.com/rozpravai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <Instagram size={20} />
+                </a>
               </Button>
             </div>
           </div>
@@ -136,7 +160,7 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 RozpravAI. {t('rights')}</p>
+          <p>&copy; 2026 RozpravAI. {t('rights')}</p>
         </div>
       </div>
     </footer>

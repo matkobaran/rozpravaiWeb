@@ -1,7 +1,8 @@
-
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, X } from "lucide-react";
 
@@ -20,12 +21,9 @@ export const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-md border-b z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">RA</span>
-          </div>
-          <span className="text-xl font-bold text-foreground">RozpravAI</span>
-        </div>
+        <Link to="/" className="flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md">
+          <BrandLogo className="h-8 sm:h-9" />
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-4">
