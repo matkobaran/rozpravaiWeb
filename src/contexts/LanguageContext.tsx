@@ -23,7 +23,7 @@ const translations = {
     aiPoweredSupport: 'AI-poháňaná podpora',
     heroTitle: 'Posilnite svoj obchod pomocou',
     aiConversations: 'AI konverzácií',
-    heroDescription: 'Vlastný AI asistent pre váš e-shop, ktorý poskytuje 24/7 zákaznícku podporu v slovenčine a angličtine. Integrujte ho jednoducho cez API a zlepšite zákaznícku spokojnosť.',
+    heroDescription: 'Vlastný AI asistent pre váš e-shop, ktorý poskytuje 24/7 zákaznícku podporu v slovenčine a angličtine. Integrujte ho jednoducho a zlepšite zákaznícku spokojnosť.',
     tryLiveDemo: 'Vyskúšajte live demo',
     bookDemo: 'Rezervovať demo',
     alwaysReady: 'Vždy pripravený pomôcť',
@@ -156,6 +156,7 @@ const translations = {
 
     // Footer
     footerDesc: 'Revolučná AI platforma pre modernú zákaznícku podporu v e-commerce.',
+    footerSocialHeading: 'Sociálne siete',
     quickLinks: 'Rýchle odkazy',
     support: 'Podpora',
     helpCenter: 'Centrum pomoci',
@@ -370,6 +371,7 @@ const translations = {
 
     // Footer
     footerDesc: 'Revolutionary AI platform for modern customer support in e-commerce.',
+    footerSocialHeading: 'Social media',
     quickLinks: 'Quick Links',
     support: 'Support',
     helpCenter: 'Help Center',
